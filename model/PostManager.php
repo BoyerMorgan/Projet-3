@@ -5,12 +5,20 @@ require_once("model/Manager.php");
 
 class PostManager extends Manager {
 
-	public function getPosts()
+	public function getFivePosts()
 	{
 		$perPage = 5;
 		$cPage = 1;
 		$db = $this->dbConnect();
 		$posts = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT '.(($cPage-1)*$perPage).', '.$perPage.'');
+
+		return $posts;
+	}
+
+	public function getPosts()
+	{
+		$db = $this->dbConnect();
+		$posts = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC');
 
 		return $posts;
 	}
@@ -24,6 +32,8 @@ class PostManager extends Manager {
 
 		return $post;
 	}
+
+
 
 	public function count()
 	{

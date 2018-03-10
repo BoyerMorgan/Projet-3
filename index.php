@@ -15,6 +15,11 @@ try {
 				echo 'Erreur : aucun identifiant de billet envoyé';
 			}
 		}
+		else if ($_GET['action'] == 'Administration')
+		{
+	
+			Pageadmin();
+		}
 		elseif ($_GET['action'] == 'addComment') {
 			if (isset($_GET['id']) && $_GET['id'] > 0) {
 				if (!empty($_POST['author']) && (!empty($_POST['comment']))) {

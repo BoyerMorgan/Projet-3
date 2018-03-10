@@ -5,7 +5,7 @@ require_once('model/CommentManager.php');
 function listPosts()
 {
 	$postManager =new PostManager();
-	$posts = $postManager->getPosts();
+	$posts = $postManager->getFivePosts();
 	$total = $postManager->count();
 
 	require('view/listPostsView.php');
@@ -32,4 +32,18 @@ function addComment($postId, $author, $comment)
 	else {
 		header('Location: index.php?action=post&id=' . $postId);
 	}
+}
+
+function PageAdmin()	
+{
+	$postManager = new PostManager();
+	$posts = $postManager->getPosts();
+	$total = $postManager->count();
+
+	require('view/AdminView.php');
+}
+
+function Verify()
+{
+	
 }
