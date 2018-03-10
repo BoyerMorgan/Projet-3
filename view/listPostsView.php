@@ -1,9 +1,5 @@
-<?php $title = 'Billet simple pour l\'Alaska'; ?>
 
-<?php ob_start(); ?>
-<h1>Billet simple pour l'Alaska !</h1>
-<h2>Derniers chapitres en date :</h2>
-
+<h2>Liste des derniers chapitres</h2>
 <?php
 while ($data = $posts->fetch())
 {
@@ -11,11 +7,11 @@ while ($data = $posts->fetch())
 	<div class="news">
 			<h3>
 				<?= htmlspecialchars($data['title']); ?>
-				<em>le <?= $data['creation_date_fr']; ?></em>
+				en date du <em><?= $data['creation_date_fr']; ?></em>
 			</h3>
 
 			<p>
-				<?= substr(nl2br(htmlspecialchars($data['content'])), 0, 250); ?>...
+				<?= substr(nl2br(htmlspecialchars($data['content'])), 0, 500); ?>...
 				<em><a href="index.php?action=post&amp;id=<?= $data['id']; ?>">Voir plus</a></em>
 			</p>
 	</div>
@@ -23,6 +19,5 @@ while ($data = $posts->fetch())
 }
 $posts->closeCursor();
 ?>
-<?php $content = ob_get_clean(); ?>
-<?php require ('template.php'); ?>
+
 	

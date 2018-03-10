@@ -6,6 +6,7 @@ function listPosts()
 {
 	$postManager =new PostManager();
 	$posts = $postManager->getPosts();
+	$total = $postManager->count();
 
 	require('view/listPostsView.php');
 }

@@ -1,6 +1,7 @@
 <?php
 require('controller/controller.php');
 
+ob_start(); 
 try {
 	if (isset($_GET['action'])) {
 		if ($_GET['action'] == 'listPosts') {
@@ -30,5 +31,8 @@ try {
 }
 catch(Exception $e) {
 	echo 'Erreur : ' . $e->getMessage();
-}	
+}
+$content = ob_get_clean();
+
+require('view/template.php');	
 
