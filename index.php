@@ -24,6 +24,12 @@ try {
 		{
 			Pageadmin();
 		}
+		elseif ($_GET['action'] == 'deconnexion')
+		{
+			$_SESSION = array();
+			session_destroy();
+			listPosts();
+		}
 		elseif ($_GET['action'] == 'addComment') {
 			if (isset($_GET['id']) && $_GET['id'] > 0) {
 				if (!empty($_POST['author']) && (!empty($_POST['comment']))) {

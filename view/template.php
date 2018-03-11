@@ -14,6 +14,16 @@
         <?= $content ?>
     </body>
     <p>
+<?php        
+    if (isset($_SESSION['is_logged']) && $_SESSION['is_logged'] == true )
+    {
+?>        
+    <a href="index.php?action=deconnexion"><button>Déconnexion</button></a>
+<?php
+    }
+    else
+    {
+?>
     	<h3>Espace d'administration</h3>
     	<form action="index.php?action=connexion" method="post">
             <p>
@@ -22,5 +32,8 @@
               <input type="submit" value="Se connecter" />
             </p>
         </form>
+<?php
+}
+?>     
     </p>
 </html>

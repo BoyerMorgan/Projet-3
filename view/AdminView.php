@@ -1,4 +1,4 @@
-<h2>Bienvenue sur votre espace d'administration</h2>
+<h2>Bienvenue <?= $_SESSION['pseudo']?> sur votre espace d'administration</h2>
 
 <h3>Voici les <?=$total?> articles que vous avez mis en ligne</h3>	
 

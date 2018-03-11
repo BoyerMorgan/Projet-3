@@ -5,7 +5,7 @@ while ($data = $posts->fetch())
 ?>
 	<div class="news">
 			<h3>
-				<?= htmlspecialchars($data['title']); ?>
+				<a href="index.php?action=post&amp;id=<?= $data['id']; ?>"><?= htmlspecialchars($data['title']); ?></a>
 				en date du <em><?= $data['creation_date_fr']; ?></em>
 			</h3>
 
