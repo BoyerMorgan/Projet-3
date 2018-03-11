@@ -33,8 +33,6 @@ class PostManager extends Manager {
 		return $post;
 	}
 
-
-
 	public function count()
 	{
 		$db = $this->dbConnect();

@@ -15,9 +15,12 @@ try {
 				echo 'Erreur : aucun identifiant de billet envoyé';
 			}
 		}
-		else if ($_GET['action'] == 'Administration')
+		elseif ($_GET['action'] == 'connexion')
 		{
-	
+			Verify($_POST['pseudo'], $_POST['pass']);
+		}
+		elseif ($_GET['action'] == 'Administration')
+		{
 			Pageadmin();
 		}
 		elseif ($_GET['action'] == 'addComment') {

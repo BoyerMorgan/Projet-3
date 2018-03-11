@@ -11,12 +11,12 @@
         <?= $content ?>
     </body>
     <p>
-    	Espace d'administration
-    	<form action="index.php?action=Administration" method="post">
+    	<h3>Espace d'administration</h3>
+    	<form action="index.php?action=connexion" method="post">
             <p>
-            <input type="text" name="Identifiant" />
-            <input type="password" name="mot_de_passe" />
-            <input type="submit" value="Valider" />
+              <input type="text" id="pseudo" name="pseudo" /> 
+              <input type="password" id="pass" name="pass" />
+              <input type="submit" value="Se connecter" />
             </p>
         </form>
     </p>

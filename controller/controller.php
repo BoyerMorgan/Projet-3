@@ -1,6 +1,7 @@
 <?php
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
+require_once('model/ConnexionManager.php');
 
 function listPosts()
 {
@@ -43,7 +44,18 @@ function PageAdmin()
 	require('view/AdminView.php');
 }
 
-function Verify()
+function Verify($pseudo, $pass)
 {
-	
+	$connexionManager = new ConnexionManager();
+	$result = $connexionManager->Connexion($pseudo, $pass);
+	if ($result == 1)
+	{
+		echo 'Mauvais identifiant ou mot de passe ' . var_dump($result);
+	}
+	else
+	{
+		session_start();
+		$_SESSION['pseudo'] = $pseudo;
+		header('Location: index.php?action=Administration');
+	}	
 }
