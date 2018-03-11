@@ -37,25 +37,30 @@ function addComment($postId, $author, $comment)
 
 function PageAdmin()	
 {
-	$postManager = new PostManager();
-	$posts = $postManager->getPosts();
-	$total = $postManager->count();
-
-	require('view/AdminView.php');
+	if (isset($_SESSION['is_logged']) && $_SESSION['is_logged'] == true )
+	{	
+		$postManager = new PostManager();
+		$posts = $postManager->getPosts();
+		$total = $postManager->count();
+		require('view/AdminView.php');
+	}
+	else require('view/ConnexionView.php');
 }
 
 function Verify($pseudo, $pass)
 {
 	$connexionManager = new ConnexionManager();
 	$result = $connexionManager->Connexion($pseudo, $pass);
-	if ($result == 1)
+	if ($result == false)
 	{
-		echo 'Mauvais identifiant ou mot de passe ' . var_dump($result);
+		$_SESSION['is_logged'] = false;
+		echo 'Mauvais identifiant ou mot de passe ';
+
 	}
 	else
 	{
-		session_start();
 		$_SESSION['pseudo'] = $pseudo;
+		$_SESSION['is_logged'] = true;
 		header('Location: index.php?action=Administration');
 	}	
 }

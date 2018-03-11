@@ -18,13 +18,11 @@ class ConnexionManager extends Manager
 		
 			if ($pass == $result['pass'])
 			{
-				$int = 2;
+				return true;
 			}
 			else
 			{
-				$int = 1;
+				return false;
 			}
-
-		return $int;
 	}
 }

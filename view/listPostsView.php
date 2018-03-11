@@ -1,4 +1,3 @@
-
 <h2>Liste des derniers chapitres</h2>
 <?php
 while ($data = $posts->fetch())

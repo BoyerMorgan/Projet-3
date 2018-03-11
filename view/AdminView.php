@@ -20,3 +20,4 @@ $posts->closeCursor();
 	</div>
 
 <p><a href="index.php?action=listPosts">Retour à la liste des billets</a></p>
+
