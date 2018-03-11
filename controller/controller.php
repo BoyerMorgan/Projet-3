@@ -40,8 +40,12 @@ function PageAdmin()
 	if (isset($_SESSION['is_logged']) && $_SESSION['is_logged'] == true )
 	{	
 		$postManager = new PostManager();
+		$commentManager = new CommentManager();
+
 		$posts = $postManager->getPosts();
 		$total = $postManager->count();
+		$report = $commentManager->getReports();
+		
 		require('view/AdminView.php');
 	}
 	else require('view/ConnexionView.php');

@@ -13,6 +13,19 @@ while ($data = $posts->fetch())
 					<td><a href="index.php?action=Modify&amp;id=<?= $data['id']; ?>">Modifier</a></td>
 			</tr>
 		</table>
+
+<?php
+}
+
+while ($comment = $report->fetch())
+{
+?>
+	<p>Ce commentaire a été signalé <?= $comment['report']?> fois : </p>
+<p>	
+	<strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?> :<br />
+	<?= nl2br(htmlspecialchars($comment['comment'])) ?>
+</p>
+
 <?php
 }
 $posts->closeCursor();
