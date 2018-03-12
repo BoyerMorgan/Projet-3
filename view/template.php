@@ -18,7 +18,8 @@
     if (isset($_SESSION['is_logged']) && $_SESSION['is_logged'] == true )
     {
 ?>        
-    <a href="index.php?action=deconnexion"><button>Déconnexion</button></a>
+    <a href="index.php?action=deconnexion"><button>Déconnexion</button></a><br />
+    <a href="index.php?action=Administration"><button>Page d'administration</button></a>
 <?php
     }
     else

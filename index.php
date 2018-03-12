@@ -16,13 +16,22 @@ try {
 				echo 'Erreur : aucun identifiant de billet envoyé';
 			}
 		}
-		elseif ($_GET['action'] == 'connexion')
-		{
+		elseif ($_GET['action'] == 'connexion') {
 			Verify($_POST['pseudo'], $_POST['pass']);
 		}
-		elseif ($_GET['action'] == 'Administration')
-		{
+		elseif ($_GET['action'] == 'Administration') {
 			Pageadmin();
+		
+		}
+		elseif ($_GET['action'] == 'Valider') {
+			if (isset($_GET['id']) && $_GET['id'] > 0) {
+					IsValid($_GET['id']);
+				}
+		}
+		elseif ($_GET['action'] == 'Supprimer') {
+			if (isset($_GET['id']) && $_GET['id'] > 0) {
+					DeleteComment($_GET['id']);
+				}
 		}
 		elseif ($_GET['action'] == 'deconnexion')
 		{

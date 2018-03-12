@@ -66,5 +66,35 @@ function Verify($pseudo, $pass)
 		$_SESSION['pseudo'] = $pseudo;
 		$_SESSION['is_logged'] = true;
 		header('Location: index.php?action=Administration');
-	}	
+	}
+}
+
+function IsValid($id)
+{
+ 	$commentManager = new CommentManager();
+
+ 	$isvalid = $commentManager->ValidateComment($id);
+
+ 	if ($affectedLines === false) {
+		
+		throw new Exception('Impossible de valider le commentaire !');
+	}
+	else {
+		header('Location: index.php?action=Administration');
+	}
+}
+
+function DeleteComment($id)
+{
+	$commentManager = new CommentManager();
+
+	$isvalid = $commentManager->Delete($id);
+
+	if ($affectedLines === false) {
+		
+		throw new Exception('Impossible de supprimer le commentaire !');
+	}
+	else {
+		header('Location: index.php?action=Administration');
+	}
 }

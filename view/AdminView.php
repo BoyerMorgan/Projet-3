@@ -24,6 +24,8 @@ while ($comment = $report->fetch())
 <p>	
 	<strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?> :<br />
 	<?= nl2br(htmlspecialchars($comment['comment'])) ?>
+	<a href="index.php?action=Valider&amp;id=<?= $comment['id']; ?>">Valider commentaire</a>
+	<a href="index.php?action=Supprimer&amp;id=<?= $comment['id']; ?>"">Supprimer commentaire</a>
 </p>
 
 <?php
