@@ -48,6 +48,11 @@ try {
 			}
 			else { echo 'Erreur : aucun identifiant de billet envoyé'; }
 		}
+		elseif ($_GET['action'] == 'Report') {
+			if (isset($_GET['id']) && $_GET['id'] > 0) {
+				Report($_GET['id']);
+			}
+		}
 	}
 	else {
 		listPosts();

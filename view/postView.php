@@ -33,7 +33,7 @@
     {
         ?>
         <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
-    <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
+    <p><?= nl2br(htmlspecialchars($comment['comment']));?></p><a href="index.php?action=Report&amp;id=<?= $comment['id']; ?>">Signaler commentaire </a>[<?=$comment['report'];?>]
 
     <?php    
     }

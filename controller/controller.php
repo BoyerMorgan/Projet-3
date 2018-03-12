@@ -75,7 +75,7 @@ function IsValid($id)
 
  	$isvalid = $commentManager->ValidateComment($id);
 
- 	if ($affectedLines === false) {
+ 	if ($isvalid === false) {
 		
 		throw new Exception('Impossible de valider le commentaire !');
 	}
@@ -90,11 +90,27 @@ function DeleteComment($id)
 
 	$isvalid = $commentManager->Delete($id);
 
-	if ($affectedLines === false) {
+	if ($isvalid === false) {
 		
 		throw new Exception('Impossible de supprimer le commentaire !');
 	}
 	else {
 		header('Location: index.php?action=Administration');
+	}
+}
+
+function Report($id)
+{
+	$commentManager = new CommentManager();
+
+	$report = $commentManager->Report($id);
+	$postId = $commentManager->GetPostId($id);
+
+	if ($report === false) {
+		
+		throw new Exception('Impossible de supprimer le commentaire !');
+	}
+	else {
+		header('Location: index.php?action=post&id=' . $postId);
 	}
 }
