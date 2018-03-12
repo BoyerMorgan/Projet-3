@@ -16,16 +16,15 @@ while ($data = $posts->fetch())
 
 <?php
 }
-
-while ($comment = $report->fetch())
+foreach ($reports as $key => $report)
 {
 ?>
-	<p>Ce commentaire a été signalé <?= $comment['report']?> fois : </p>
+	<p>Ce commentaire a été signalé <?= $report->getReport()?> fois : </p>
 <p>	
-	<strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?> :<br />
-	<?= nl2br(htmlspecialchars($comment['comment'])) ?>
-	<a href="index.php?action=Valider&amp;id=<?= $comment['id']; ?>">Valider commentaire</a>
-	<a href="index.php?action=Supprimer&amp;id=<?= $comment['id']; ?>"">Supprimer commentaire</a>
+	<strong><?= htmlspecialchars($report->getAuthor()) ?></strong> le <?= $report->getCommentDate() ?> :<br />
+	<?= nl2br(htmlspecialchars($report->getComment())) ?>
+	<a href="index.php?action=Valider&amp;id=<?= $report->GetId() ?>">Valider commentaire</a>
+	<a href="index.php?action=Supprimer&amp;id=<?= $report->GetId() ?>"">Supprimer commentaire</a>
 </p>
 
 <?php

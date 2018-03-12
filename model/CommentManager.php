@@ -1,16 +1,30 @@
 <?php
 
 require_once("model/Manager.php");
+require_once("model/CommentModel.php");
 
-class CommentManager extends Manager{
+class CommentManager extends Manager
+{
 
 	public function getComments($postId)
 	{
 		$db = $this->dbConnect();
-		$comments = $db->prepare ('SELECT id, author, comment, report, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date');
+		$comments = $db->prepare ('SELECT id, author, comment, report, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date FROM comments WHERE post_id = ? ORDER BY comment_date');
 		$comments->execute(array($postId));
 
-		return $comments;
+		//Hydratation
+		$commentModel = array();
+		while ($comment = $comments->fetch())
+		{
+			$commentModel = new CommentModel();
+			$commentModel->hydrate($comment);
+			$commentModels[] = $commentModel;
+		}
+
+		if (!empty($commentModels))
+		{
+		return $commentModels;
+		}
 	}
 
 	public function postComment($postId, $author, $comment)
@@ -34,9 +48,18 @@ class CommentManager extends Manager{
 	public function getReports()
 	{
 		$db = $this->dbConnect();
-		$reports = $db->query('SELECT id, author, comment, report, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE report > 0');
+		$reports = $db->query('SELECT id, author, comment, report, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date FROM comments WHERE report > 0');
+
+		//Hydratation
+		$reportModel = array();
+		while ($report = $reports->fetch())
+		{
+			$reportModel = new CommentModel();
+			$reportModel->hydrate($report);
+			$reportsModel[] = $reportModel;
+		}
 		
-		return $reports;
+		return $reportsModel;
 	}
 
 	public function ValidateComment($id)
@@ -65,7 +88,8 @@ class CommentManager extends Manager{
 	{
 		$db = $this->dbConnect();
 		$req = $db->prepare('SELECT post_id FROM comments WHERE id = :id');
-		$postId = $req->execute(array('id' => $id));
+		$req->execute(array('id' => $id));
+		$postId = $req->fetch()['post_id'];
 
 		return $postId;
 	}

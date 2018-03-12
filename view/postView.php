@@ -28,13 +28,14 @@
         </div>
     </form>
 
-    <?php    
-    while ($comment = $comments->fetch())
+    <?php 
+    foreach ($comments as $key => $comment)
     {
-        ?>
-        <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
-    <p><?= nl2br(htmlspecialchars($comment['comment']));?></p><a href="index.php?action=Report&amp;id=<?= $comment['id']; ?>">Signaler commentaire </a>[<?=$comment['report'];?>]
+    ?>
+        <p><strong><?= htmlspecialchars($comment->getAuthor()) ?></strong> le <?= $comment->getCommentDate() ?></p>
+        <p><?= nl2br(htmlspecialchars($comment->getComment()));?></p><a href="index.php?action=Report&amp;id=<?= $comment->GetId(); ?>">Signaler commentaire </a>[<?=$comment->getReport();?>]
 
-    <?php    
+    <?php      
     }
     ?>
+

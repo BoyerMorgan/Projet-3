@@ -44,7 +44,7 @@ function PageAdmin()
 
 		$posts = $postManager->getPosts();
 		$total = $postManager->count();
-		$report = $commentManager->getReports();
+		$reports = $commentManager->getReports();
 		
 		require('view/AdminView.php');
 	}
@@ -108,7 +108,7 @@ function Report($id)
 
 	if ($report === false) {
 		
-		throw new Exception('Impossible de supprimer le commentaire !');
+		throw new Exception('Impossible de signaler le commentaire !');
 	}
 	else {
 		header('Location: index.php?action=post&id=' . $postId);
