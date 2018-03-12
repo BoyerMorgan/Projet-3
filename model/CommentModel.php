@@ -37,12 +37,17 @@ class CommentModel extends Model
 		return $this->comment_date;
 	}
 
-		public function Getreport()
+		public function GetReport()
 	{
 		return $this->report;
 	}
 
 	//SETTERS
+
+	public function SetId($id)
+	{
+		$this->id = $id;
+	}
 
 	public function SetPostId($postId)
 	{

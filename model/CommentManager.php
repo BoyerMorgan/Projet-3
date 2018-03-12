@@ -9,7 +9,7 @@ class CommentManager extends Manager
 	public function getComments($postId)
 	{
 		$db = $this->dbConnect();
-		$comments = $db->prepare ('SELECT id, author, comment, report, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date FROM comments WHERE post_id = ? ORDER BY comment_date');
+		$comments = $db->prepare ('SELECT id, author, comment, report, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS commentDate FROM comments WHERE post_id = ? ORDER BY comment_date');
 		$comments->execute(array($postId));
 
 		//Hydratation
@@ -48,7 +48,7 @@ class CommentManager extends Manager
 	public function getReports()
 	{
 		$db = $this->dbConnect();
-		$reports = $db->query('SELECT id, author, comment, report, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date FROM comments WHERE report > 0');
+		$reports = $db->query('SELECT id, author, comment, report, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS commentDate FROM comments WHERE report > 0');
 
 		//Hydratation
 		$reportModel = array();

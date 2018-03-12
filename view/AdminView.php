@@ -23,8 +23,8 @@ foreach ($reports as $key => $report)
 <p>	
 	<strong><?= htmlspecialchars($report->getAuthor()) ?></strong> le <?= $report->getCommentDate() ?> :<br />
 	<?= nl2br(htmlspecialchars($report->getComment())) ?>
-	<a href="index.php?action=Valider&amp;id=<?= $report->GetId() ?>">Valider commentaire</a>
-	<a href="index.php?action=Supprimer&amp;id=<?= $report->GetId() ?>"">Supprimer commentaire</a>
+	<a href="index.php?action=Valider&amp;id=<?= $report->getId() ?>">Valider commentaire</a>
+	<a href="index.php?action=Supprimer&amp;id=<?= $report->getId() ?>"">Supprimer commentaire</a>
 </p>
 
 <?php

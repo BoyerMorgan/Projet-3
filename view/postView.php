@@ -33,7 +33,7 @@
     {
     ?>
         <p><strong><?= htmlspecialchars($comment->getAuthor()) ?></strong> le <?= $comment->getCommentDate() ?></p>
-        <p><?= nl2br(htmlspecialchars($comment->getComment()));?></p><a href="index.php?action=Report&amp;id=<?= $comment->GetId(); ?>">Signaler commentaire </a>[<?=$comment->getReport();?>]
+        <p><?= nl2br(htmlspecialchars($comment->getComment()));?></p><a href="index.php?action=Report&amp;id=<?= $comment->getId() ?>">Signaler commentaire </a>[<?=$comment->getReport();?>]
 
     <?php      
     }
