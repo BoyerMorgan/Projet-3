@@ -118,6 +118,40 @@ function Report($id)
 function ModifyPost($postid)
 {
 	$postManager = new PostManager();
-	$post = $postManager->getPost($_GET['id']);
-	require('view/Backend.php');
+	$post = $postManager->getPost($postid);
+	require('view/BackendView.php');
+}
+
+function UpdatePost($id, $content, $title)
+{
+	$postManager = new PostManager();
+	$post = $postManager->UpdateContent($id, $content, $title);
+
+	if ($post === false) {
+		
+		throw new Exception('Impossible de modifier l\'article !');
+	}
+	else {
+		header('Location: index.php?action=Modify&id=' . $id);
+	}
+
+}
+
+function CreateNewPost()
+{
+	require('view/BackendView.php');
+}
+
+function CreateContent($title, $content)
+{
+	$postManager = new PostManager();
+	$affectedLine = $postManager->postContent($title, $content);
+
+
+	if ($affectedLine === false) {
+		throw new Exception('Impossible de mettre l\'article en ligne !');
+	}
+	else {
+		header('Location: index.php?action=Administration');
+	}
 }

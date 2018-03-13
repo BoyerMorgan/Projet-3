@@ -21,12 +21,42 @@
     '//www.tinymce.com/css/codepen.min.css']
 });          </script>
     </head>
+    <body>
+<?php if (!empty($post)) { 
+?>    
     <h2>Modifications du <?= htmlspecialchars($post['title']) ?></h2>
-
-<body>
-  <textarea id ="mytextarea"> 
-      <?= nl2br(htmlspecialchars($post['content'])) ?>
-  </textarea>
+  <form action="index.php?action=UpdateContent&amp;id=<?= $post['id'] ?>" method="post">
+    <div>
+      <label for="title">Titre de l'article</label><br />
+      <input type="text" id="title" name="newtitle" value="<?= htmlspecialchars($post['title']) ?>">
+      </input>
+    </div>
+    <div>
+      <br /><label for="content">Contenu de l'article</label><br />
+      <textarea id ="mytextarea", name="newcontent"> 
+        <?= nl2br(htmlspecialchars($post['content'])) ?> 
+      </textarea>
+      <br /><input type="submit" value="Modifier" />
+  </div>
+<?php 
+}
+else {
+?>  
+<h2>Création d'un nouvel article</h2>
+  <form action="index.php?action=CreateContent" method="post">
+    <div>
+      <label for="title">Titre de l'article</label><br />
+      <input type="text" id="title" name="newtitle">
+      </input>
+    </div>
+    <div>
+      <br /><label for="content">Contenu de l'article</label><br />
+      <textarea id ="mytextarea", name="newcontent"></textarea> 
+      <br /><input type="submit" value="Mettre en ligne" />
+  </div>
+<?php 
+}
+?>
 
 <p><a href="index.php?action=listPosts">Retour à la liste des billets</a></p>
 <p><a href="index.php?action=Administration">Retour à l'espace d'administration</a></p>

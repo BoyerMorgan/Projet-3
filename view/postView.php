@@ -3,12 +3,12 @@
 
     <div class="news">
         <h3>
-            <?= htmlspecialchars($post['title']) ?>
+            <?= htmlspecialchars_decode($post['title']) ?>
                 <em>le <?= $post['creation_date_fr'] ?></em>
         </h3>
 
         <p>
-            <?= nl2br(htmlspecialchars($post['content'])) ?>
+            <?= nl2br(htmlspecialchars_decode($post['content'])) ?>
         </p>
     </div>
 

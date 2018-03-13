@@ -27,6 +27,17 @@ try {
 				ModifyPost($_GET['id']);
 			}
 		}
+		else if ($_GET['action'] == 'CreateNew') {
+			CreateNewPost();
+		}
+		else if ($_GET['action'] == 'CreateContent') {
+			CreateContent($_POST['newtitle'], $_POST['newcontent']);
+		}
+		elseif ($_GET['action'] == 'UpdateContent') {
+			if (isset($_GET['id']) && $_GET['id'] > 0) {
+				UpdatePost($_GET['id'], $_POST['newcontent'], $_POST['newtitle']);
+			}
+		}
 		elseif ($_GET['action'] == 'Valider') {
 			if (isset($_GET['id']) && $_GET['id'] > 0) {
 					IsValid($_GET['id']);

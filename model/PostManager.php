@@ -58,4 +58,26 @@ class PostManager extends Manager {
 
 		return $number_lines;
 	}
+
+	public function UpdateContent($id, $content, $title)
+	{
+		$db = $this->dbConnect();
+		$update = $db->prepare('UPDATE posts SET title = :title, content = :content,  WHERE id = :id');
+		$affectedLine = $update->execute(array(
+			'content' => $content,
+			'title'=> $title,
+			'id' => $id
+		));
+
+		return $affectedLine;
+	}
+
+		public function postContent($title, $content)
+	{
+		$db = $this->dbConnect();
+		$post = $db->prepare('INSERT INTO posts(title, content, creation_Date) VALUES(?, ?, NOW())');
+		$affectedLines = $post->execute(array($title, $content));
+
+		return $affectedLines;
+	}
 }	
