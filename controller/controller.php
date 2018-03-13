@@ -114,3 +114,10 @@ function Report($id)
 		header('Location: index.php?action=post&id=' . $postId);
 	}
 }
+
+function ModifyPost($postid)
+{
+	$postManager = new PostManager();
+	$post = $postManager->getPost($_GET['id']);
+	require('view/Backend.php');
+}

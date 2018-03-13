@@ -21,7 +21,11 @@ try {
 		}
 		elseif ($_GET['action'] == 'Administration') {
 			Pageadmin();
-		
+		}
+		elseif ($_GET['action'] == 'Modify') {
+			if (isset($_GET['id']) && $_GET['id'] > 0) {
+				ModifyPost($_GET['id']);
+			}
 		}
 		elseif ($_GET['action'] == 'Valider') {
 			if (isset($_GET['id']) && $_GET['id'] > 0) {
