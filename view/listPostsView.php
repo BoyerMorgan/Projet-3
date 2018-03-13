@@ -1,22 +1,21 @@
 <h2>Liste des derniers chapitres</h2>
 <?php
-while ($data = $posts->fetch())
+foreach($posts as $key => $post)
 {
 ?>
 	<div class="news">
 			<h3>
-				<a href="index.php?action=post&amp;id=<?= $data['id']; ?>"><?= htmlspecialchars($data['title']); ?></a>
-				en date du <em><?= $data['creation_date_fr']; ?></em>
+				<a href="index.php?action=post&amp;id=<?= $post->getId(); ?>"><?= htmlspecialchars($post->getTitle()); ?></a>
+				en date du <em><?= $post->GetCreationDate(); ?></em>
 			</h3>
 
 			<p>
-				<?= substr(nl2br(htmlspecialchars($data['content'])), 0, 500); ?>...
-				<em><a href="index.php?action=post&amp;id=<?= $data['id']; ?>">Voir plus</a></em>
+				<?= substr(nl2br(htmlspecialchars($post->getContent())), 0, 500); ?>...
+				<em><a href="index.php?action=post&amp;id=<?= $post->getId(); ?>">Voir plus</a></em>
 			</p>
 	</div>
 <?php
 }
-$posts->closeCursor();
 ?>
 
 	

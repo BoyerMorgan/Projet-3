@@ -73,6 +73,4 @@ class CommentModel extends Model
 	{
 		$this->report = $report;
 	}	
-
-
 }

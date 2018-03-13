@@ -28,7 +28,9 @@
         </div>
     </form>
 
-    <?php 
+    <?php
+if (!empty($comments))
+{ 
     foreach ($comments as $key => $comment)
     {
     ?>
@@ -37,5 +39,6 @@
 
     <?php      
     }
+}
     ?>
 

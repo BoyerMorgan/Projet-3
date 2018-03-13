@@ -1,6 +1,7 @@
 <?php
 
 require_once("model/Manager.php");
+require_once("model/PostModel.php");
 
 
 class PostManager extends Manager {
@@ -10,17 +11,32 @@ class PostManager extends Manager {
 		$perPage = 5;
 		$cPage = 1;
 		$db = $this->dbConnect();
-		$posts = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT '.(($cPage-1)*$perPage).', '.$perPage.'');
+		$posts = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate FROM posts ORDER BY creation_date DESC LIMIT '.(($cPage-1)*$perPage).', '.$perPage.'');
 
-		return $posts;
+		$postModel = array();
+		while ($post = $posts->fetch())
+		{
+			$postModel = new PostModel();
+			$postModel->hydrate($post);
+			$postModels[] = $postModel; 
+		}
+		return $postModels;
 	}
 
 	public function getPosts()
 	{
 		$db = $this->dbConnect();
-		$posts = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC');
+		$posts = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate FROM posts ORDER BY creation_date DESC');
 
-		return $posts;
+		$postModel = array();
+		while ($post = $posts->fetch())
+		{
+			$postModel = new PostModel();
+			$postModel->hydrate($post);
+			$postModels[] = $postModel; 
+		}
+		return $postModels;
+
 	}
 
 	public function getPost($postId)

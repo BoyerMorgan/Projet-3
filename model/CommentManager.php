@@ -20,11 +20,8 @@ class CommentManager extends Manager
 			$commentModel->hydrate($comment);
 			$commentModels[] = $commentModel;
 		}
-
 		if (!empty($commentModels))
-		{
-		return $commentModels;
-		}
+		{	return $commentModels; }
 	}
 
 	public function postComment($postId, $author, $comment)
@@ -58,8 +55,9 @@ class CommentManager extends Manager
 			$reportModel->hydrate($report);
 			$reportsModel[] = $reportModel;
 		}
-		
-		return $reportsModel;
+		if (!empty($reportsModel))
+		{	return $reportsModel; }
+
 	}
 
 	public function ValidateComment($id)
