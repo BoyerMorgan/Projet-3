@@ -25,25 +25,26 @@
 <?php if (!empty($post)) { 
 ?>    
     <h2>Modifications du <?= htmlspecialchars($post['title']) ?></h2>
-  <form action="index.php?action=UpdateContent&amp;id=<?= $post['id'] ?>" method="post">
+  <form action="index.php?action=UpdateContent&amp;id=<?= $post['id'] ?>" method="POST">
     <div>
       <label for="title">Titre de l'article</label><br />
-      <input type="text" id="title" name="newtitle" value="<?= htmlspecialchars($post['title']) ?>">
+      <input type="text" id="title" name="new_title" value="<?= htmlspecialchars($post['title']) ?>">
       </input>
     </div>
     <div>
       <br /><label for="content">Contenu de l'article</label><br />
-      <textarea id ="mytextarea", name="newcontent"> 
+      <textarea id ="mytextarea", name="new_content"> 
         <?= nl2br(htmlspecialchars($post['content'])) ?> 
       </textarea>
       <br /><input type="submit" value="Modifier" />
-  </div>
+    </div>
+  </form>
 <?php 
 }
 else {
 ?>  
 <h2>Création d'un nouvel article</h2>
-  <form action="index.php?action=CreateContent" method="post">
+  <form action="index.php?action=CreateContent" method="POST">
     <div>
       <label for="title">Titre de l'article</label><br />
       <input type="text" id="title" name="newtitle">
@@ -53,7 +54,8 @@ else {
       <br /><label for="content">Contenu de l'article</label><br />
       <textarea id ="mytextarea", name="newcontent"></textarea> 
       <br /><input type="submit" value="Mettre en ligne" />
-  </div>
+    </div>
+  </form>
 <?php 
 }
 ?>

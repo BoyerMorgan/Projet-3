@@ -129,7 +129,8 @@ function UpdatePost($id, $content, $title)
 
 	if ($post === false) {
 		
-		throw new Exception('Impossible de modifier l\'article !');
+		throw new Exception('Impossible de modifier l\'article');
+
 	}
 	else {
 		header('Location: index.php?action=Modify&id=' . $id);
@@ -150,6 +151,7 @@ function CreateContent($title, $content)
 
 	if ($affectedLine === false) {
 		throw new Exception('Impossible de mettre l\'article en ligne !');
+
 	}
 	else {
 		header('Location: index.php?action=Administration');

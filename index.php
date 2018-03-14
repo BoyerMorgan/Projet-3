@@ -35,7 +35,7 @@ try {
 		}
 		elseif ($_GET['action'] == 'UpdateContent') {
 			if (isset($_GET['id']) && $_GET['id'] > 0) {
-				UpdatePost($_GET['id'], $_POST['newcontent'], $_POST['newtitle']);
+				UpdatePost($_GET['id'], $_POST['new_content'], $_POST['new_title']);
 			}
 		}
 		elseif ($_GET['action'] == 'Valider') {

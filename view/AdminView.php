@@ -11,7 +11,7 @@ foreach($posts as $key => $post)
 ?>
 		<table border ="1" cellpadding="15">
 			<tr>
-				<th><?= htmlspecialchars_decode($post->getTitle()); ?></th><td><?= substr(nl2br(htmlspecialchars_decode($post->getContent())), 0, 50); ?>...</td>
+				<th><?= htmlspecialchars_decode(substr($post->getTitle(), 0, 10)); ?></th><td><?= substr(nl2br(htmlspecialchars_decode($post->getContent())), 0, 50); ?>...</td>
 					<td><a href="index.php?action=Modify&amp;id=<?= $post->getId(); ?>">Modifier</a></td>
 			</tr>
 		</table>

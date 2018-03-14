@@ -63,11 +63,11 @@ class PostManager extends Manager {
 	{
 		$db = $this->dbConnect();
 		$update = $db->prepare('UPDATE posts SET title = :title, content = :content,  WHERE id = :id');
-		$affectedLine = $update->execute(array(
-			'content' => $content,
-			'title'=> $title,
-			'id' => $id
-		));
+		$update->bindValue(':title', $title, PDO::PARAM_STR);
+		$update->bindValue(':content', $content, PDO::PARAM_STR);
+		$update->bindValue(':id', $id, PDO::PARAM_INT);
+
+		$affectedLine = $update->execute();
 
 		return $affectedLine;
 	}
