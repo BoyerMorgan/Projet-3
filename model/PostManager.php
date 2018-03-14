@@ -62,12 +62,14 @@ class PostManager extends Manager {
 	public function UpdateContent($id, $content, $title)
 	{
 		$db = $this->dbConnect();
-		$update = $db->prepare('UPDATE posts SET title = :title, content = :content,  WHERE id = :id');
+		//try {
+		$update = $db->prepare('UPDATE posts SET title = :title, content = :content  WHERE id = :id');
 		$update->bindValue(':title', $title, PDO::PARAM_STR);
 		$update->bindValue(':content', $content, PDO::PARAM_STR);
 		$update->bindValue(':id', $id, PDO::PARAM_INT);
 
 		$affectedLine = $update->execute();
+		//} catch (Exception $e){ var_dump($e->getMessage()); }
 
 		return $affectedLine;
 	}

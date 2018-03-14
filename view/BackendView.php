@@ -51,7 +51,7 @@ else {
       </input>
     </div>
     <div>
-      <br /><label for="content">Contenu de l'article</label><br />
+      <br /><label for="newcontent">Contenu de l'article</label><br />
       <textarea id ="mytextarea", name="newcontent"></textarea> 
       <br /><input type="submit" value="Mettre en ligne" />
     </div>
