@@ -3,10 +3,10 @@ require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 require_once('model/ConnexionManager.php');
 
-function listPosts()
+function listPosts($idpage)
 {
 	$postManager =new PostManager();
-	$posts = $postManager->getFivePosts();
+	$posts = $postManager->getFivePosts($idpage);
 	$total = $postManager->count();
 
 	require('view/listPostsView.php');
@@ -88,7 +88,7 @@ function DeleteComment($id)
 {
 	$commentManager = new CommentManager();
 
-	$isvalid = $commentManager->Delete($id);
+	$isvalid = $commentManager->DeleteComment($id);
 
 	if ($isvalid === false) {
 		
@@ -98,6 +98,21 @@ function DeleteComment($id)
 		header('Location: index.php?action=Administration');
 	}
 }
+
+function DeletePost($id)
+{
+	$PostManager = new postManager();
+	$isvalid = $PostManager->Delete($id);
+
+	if ($isvalid === false) {
+		
+		throw new Exception('Impossible de supprimer le commentaire !');
+	}
+	else {
+		header('Location: index.php?action=Administration');
+	}
+}
+
 
 function Report($id)
 {
@@ -146,7 +161,7 @@ function CreateNewPost()
 function CreateContent($title, $content)
 {
 	$postManager = new PostManager();
-	$affectedLine = $postManager->postContent($title, $content);
+	$affectedLine = $postManager->PostContent($title, $content);
 
 
 	if ($affectedLine === false) {

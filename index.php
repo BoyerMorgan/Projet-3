@@ -6,7 +6,9 @@ ob_start();
 try {
 	if (isset($_GET['action'])) {
 		if ($_GET['action'] == 'listPosts') {
-			listPosts();
+			if (isset($_GET['id']) && $_GET['id'] > 0) {
+				listPosts($_GET['id']);
+			}
 		}
 		elseif ($_GET['action'] == 'post') {
 			if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -27,6 +29,11 @@ try {
 				ModifyPost($_GET['id']);
 			}
 		}
+		elseif ($_GET['action'] == 'DeletePost') {
+			if (isset($_GET['id']) && $_GET['id'] > 0) {
+				DeletePost($_GET['id']);
+			}
+		}
 		else if ($_GET['action'] == 'CreateNew') {
 			CreateNewPost();
 		}
@@ -38,12 +45,12 @@ try {
 				UpdatePost($_GET['id'], $_POST['new_content'], $_POST['new_title']);
 			}
 		}
-		elseif ($_GET['action'] == 'Valider') {
+		elseif ($_GET['action'] == 'ValidateComment') {
 			if (isset($_GET['id']) && $_GET['id'] > 0) {
 					IsValid($_GET['id']);
 				}
 		}
-		elseif ($_GET['action'] == 'Supprimer') {
+		elseif ($_GET['action'] == 'DeleteComment') {
 			if (isset($_GET['id']) && $_GET['id'] > 0) {
 					DeleteComment($_GET['id']);
 				}
@@ -52,7 +59,7 @@ try {
 		{
 			$_SESSION = array();
 			session_destroy();
-			listPosts();
+			listPosts(1);
 		}
 		elseif ($_GET['action'] == 'addComment') {
 			if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -70,7 +77,7 @@ try {
 		}
 	}
 	else {
-		listPosts();
+		listPosts(1);
 	}
 }
 catch(Exception $e) {

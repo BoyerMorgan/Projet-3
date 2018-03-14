@@ -13,6 +13,7 @@ foreach($posts as $key => $post)
 			<tr>
 				<th><?= htmlspecialchars_decode(substr($post->getTitle(), 0, 10)); ?></th><td><?= substr(nl2br(htmlspecialchars_decode($post->getContent())), 0, 50); ?>...</td>
 					<td><a href="index.php?action=Modify&amp;id=<?= $post->getId(); ?>">Modifier</a></td>
+					<td><a href="index.php?action=DeletePost&amp;id=<?= $post->getId(); ?>">Supprimer</a></td>
 			</tr>
 		</table>
 
@@ -27,8 +28,8 @@ if (!empty($reports))
 	<p>	
 		<strong><?= htmlspecialchars_decode($report->getAuthor()) ?></strong> le <?= $report->getCommentDate() ?> :<br />
 		<?= nl2br(htmlspecialchars_decode($report->getComment())) ?>
-		<a href="index.php?action=Valider&amp;id=<?= $report->getId() ?>">Valider commentaire</a>
-		<a href="index.php?action=Supprimer&amp;id=<?= $report->getId() ?>"">Supprimer commentaire</a>
+		<a href="index.php?action=ValidateComment&amp;id=<?= $report->getId() ?>">Valider commentaire</a>
+		<a href="index.php?action=DeleteComment&amp;id=<?= $report->getId() ?>"">Supprimer commentaire</a>
 	</p>
 
 <?php
@@ -37,5 +38,5 @@ if (!empty($reports))
 ?>		
 	</div>
 
-<p><a href="index.php?action=listPosts">Retour à la liste des billets</a></p>
+<p><a href="index.php">Retour à la liste des billets</a></p>
 

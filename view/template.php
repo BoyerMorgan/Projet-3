@@ -15,12 +15,17 @@
     </body>
     <p>
 <?php        
-    if (isset($_SESSION['is_logged']) && $_SESSION['is_logged'] == true )
-    {
+    if (isset($_SESSION['is_logged']) && $_SESSION['is_logged'] == true) { 
+        if ((isset($_GET['action']) && $_GET['action'] != 'Administration') || !isset($_GET['action'])) {
 ?>        
-    <a href="index.php?action=deconnexion"><button>Déconnexion</button></a><br />
-    <a href="index.php?action=Administration"><button>Page d'administration</button></a>
+        <a href="index.php?action=deconnexion"><button>Déconnexion</button></a><br />
+        <a href="index.php?action=Administration"><button>Page d'administration</button></a>
 <?php
+        }
+        else if  (isset($_GET['action']) && $_GET['action'] == 'Administration') {
+?>      <a href="index.php?action=deconnexion"><button>Déconnexion</button></a><br />      
+<?php   
+        }     
     }
     else
     {
@@ -34,7 +39,7 @@
             </p>
         </form>
 <?php
-}
+    }
 ?>     
     </p>
 </html>
