@@ -1,6 +1,6 @@
 <?php
 
-require_once("model/Manager.php");
+require_once("model/Managers/Manager.php");
 
 class ConnexionManager extends Manager
 {

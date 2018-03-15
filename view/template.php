@@ -1,6 +1,7 @@
-<?php
-?>
-
+<?php        
+    if (isset($_SESSION['is_logged']) && $_SESSION['is_logged'] == true) { 
+        if ((isset($_GET['action']) && $_GET['action'] != 'Administration') || !isset($_GET['action'])) {
+?> 
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,17 +14,26 @@
     <body>
         <?= $content ?>
     </body>
-    <p>
-<?php        
-    if (isset($_SESSION['is_logged']) && $_SESSION['is_logged'] == true) { 
-        if ((isset($_GET['action']) && $_GET['action'] != 'Administration') || !isset($_GET['action'])) {
-?>        
+    <p>       
         <a href="index.php?action=deconnexion"><button>Déconnexion</button></a><br />
         <a href="index.php?action=Administration"><button>Page d'administration</button></a>
 <?php
         }
         else if  (isset($_GET['action']) && $_GET['action'] == 'Administration') {
-?>      <a href="index.php?action=deconnexion"><button>Déconnexion</button></a><br />      
+?> 
+ <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Administration du blog</title>
+        <link href="style.css" rel="stylesheet" /> 
+    </head>
+       
+    <body>
+        <?= $content ?>
+    </body>
+    <p>
+     <a href="index.php?action=deconnexion"><button>Déconnexion</button></a><br />      
 <?php   
         }     
     }

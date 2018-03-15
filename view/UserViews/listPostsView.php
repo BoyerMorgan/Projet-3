@@ -3,10 +3,10 @@
 foreach($posts as $key => $post)
 {
 ?>
-	<div class="news">
+	<div class="AllPosts">
 			<h3>
 				<a href="index.php?action=post&amp;id=<?= $post->getId(); ?>"><?= htmlspecialchars_decode($post->getTitle()); ?></a>
-				en date du <em><?= $post->GetCreationDate(); ?></em>
+				en date du <?= $post->GetCreationDate(); ?>
 			</h3>
 			<p>
 				<?= substr(nl2br(htmlspecialchars_decode($post->getContent())), 0, 500); ?>...

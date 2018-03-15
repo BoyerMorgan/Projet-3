@@ -1,5 +1,5 @@
 <?php
-require_once ("model/Model.php");
+require_once ("model/Models/Model.php");
 
 class CommentModel extends Model
 {

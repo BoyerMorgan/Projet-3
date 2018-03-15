@@ -1,7 +1,7 @@
 <?php
 
-require_once("model/Manager.php");
-require_once("model/PostModel.php");
+require_once("model/Managers/Manager.php");
+require_once("model/Models/PostModel.php");
 
 
 class PostManager extends Manager {
@@ -11,6 +11,7 @@ class PostManager extends Manager {
 		$db = $this->dbConnect();
 		$posts = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate FROM posts ORDER BY creation_date DESC LIMIT '.(($current_page-1)*5).', '.(5*$current_page).'');
 
+		//Hydratation
 		$postModel = array();
 		while ($post = $posts->fetch())
 		{
@@ -26,6 +27,7 @@ class PostManager extends Manager {
 		$db = $this->dbConnect();
 		$posts = $db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate FROM posts ORDER BY creation_date DESC');
 
+		//Hydratation
 		$postModel = array();
 		while ($post = $posts->fetch())
 		{
@@ -40,8 +42,10 @@ class PostManager extends Manager {
 	public function getPost($postId)
 	{
 		$db = $this->dbConnect();
-		$req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
-		$req->execute(array($postId));
+		$req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = :id');
+		$req->bindValue(':id', $postId, PDO::PARAM_INT);
+		
+		$req->execute();
 		$post = $req->fetch();
 
 		return $post;
@@ -60,14 +64,12 @@ class PostManager extends Manager {
 	public function UpdateContent($id, $content, $title)
 	{
 		$db = $this->dbConnect();
-		//try {
 		$update = $db->prepare('UPDATE posts SET title = :title, content = :content  WHERE id = :id');
 		$update->bindValue(':title', $title, PDO::PARAM_STR);
 		$update->bindValue(':content', $content, PDO::PARAM_STR);
 		$update->bindValue(':id', $id, PDO::PARAM_INT);
 
 		$affectedLine = $update->execute();
-		//} catch (Exception $e){ var_dump($e->getMessage()); }
 
 		return $affectedLine;
 	}
@@ -85,7 +87,8 @@ class PostManager extends Manager {
 	{
 		$db = $this->dbConnect();
 		$delete = $db->prepare('DELETE FROM posts WHERE id = :id' );
-		$affectedLine = $delete->execute(array('id' => $id));
+		$delete->bindValue(':id', $id, PDO::PARAM_STR);
+		$affectedLine = $delete->execute();
 
 		return $affectedLine;
 	}

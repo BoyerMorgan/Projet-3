@@ -19,8 +19,15 @@ foreach($posts as $key => $post)
 
 <?php
 }
+?>
+	</div>
+
+<?php
 if (!empty($reports))
 {
+?>
+	<h3> Les commentaires suivant ont été signalé</h3>
+<?php 	
 	foreach ($reports as $key => $report)
 	{
 ?>
@@ -35,8 +42,14 @@ if (!empty($reports))
 <?php
 	}
 }
-?>		
-	</div>
+else {
+?> 
+	<h3>Aucun commentaire n'a été signalé</h3>
+<?php
+}
+?>	
+
+	
 
 <p><a href="index.php">Retour à la liste des billets</a></p>
 

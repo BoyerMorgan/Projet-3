@@ -1,15 +1,18 @@
 <?php
-require_once('model/PostManager.php');
-require_once('model/CommentManager.php');
-require_once('model/ConnexionManager.php');
+require_once('model/Managers/PostManager.php');
+require_once('model/Managers/CommentManager.php');
+require_once('model/Managers/ConnexionManager.php');
 
+/*
+* Fonctions d'affichage
+*/
 function listPosts($idpage)
 {
 	$postManager =new PostManager();
 	$posts = $postManager->getFivePosts($idpage);
 	$total = $postManager->count();
 
-	require('view/listPostsView.php');
+	require('view/UserViews/listPostsView.php');
 }
 
 function post()
@@ -19,21 +22,139 @@ function post()
 
 	$post = $postManager->getPost($_GET['id']);
 	$comments = $commentManager->getComments($_GET['id']);
-	require('view/postView.php');
+	require('view/UserViews/postView.php');
 }
 
+/*
+* Fonctions agissant sur les commentaires
+*/
 function addComment($postId, $author, $comment)
 {
-	$commentManager = new CommentManager();
-	$affectedLines = $commentManager->postComment($postId, $author, $comment);
+	try {
+		$commentManager = new CommentManager();
+		$affectedLines = $commentManager->postComment($postId, $author, $comment);
+	}
 
-	if ($affectedLines === false) {
-		throw new Exception('Impossible d\'ajouter le commentaire !');
+	catch(Exception $e) {
+		exit('<b>Catched exception at line '. $e->getLine() .' :</b> '. $e->getMessage());		
 	}
-	else {
+
 		header('Location: index.php?action=post&id=' . $postId);
-	}
 }
+
+function Report($id)
+{
+	try {
+		$commentManager = new CommentManager();
+		$report = $commentManager->Report($id);
+		$postId = $commentManager->GetPostId($id);
+	}
+
+	catch(Exception $e) {
+		exit('<b>Catched exception at line '. $e->getLine() .' :</b> '. $e->getMessage());		
+	}
+
+	header('Location: index.php?action=post&id=' . $postId);
+	
+}
+
+function IsValid($id)
+{
+	try {
+ 	$commentManager = new CommentManager();
+ 	$isvalid = $commentManager->ValidateComment($id);
+ 	}
+
+	catch(Exception $e) {
+		exit('<b>Catched exception at line '. $e->getLine() .' :</b> '. $e->getMessage());		
+	}
+
+	header('Location: index.php?action=Administration');
+}
+
+function DeleteComment($id)
+{
+	try {
+		$commentManager = new CommentManager();
+		$isvalid = $commentManager->DeleteComment($id);
+	}
+
+	catch(Exception $e) {
+		exit('<b>Catched exception at line '. $e->getLine() .' :</b> '. $e->getMessage());		
+	}
+
+		header('Location: index.php?action=Administration');
+}
+
+
+/*
+* Fonctions agissant sur le contenu des articles
+*/
+
+function DeletePost($id)
+{
+	try {
+	$PostManager = new postManager();
+	$isvalid = $PostManager->Delete($id);
+	}
+
+	catch(Exception $e) {
+		exit('<b>Catched exception at line '. $e->getLine() .' :</b> '. $e->getMessage());		
+	}
+
+	header('Location: index.php?action=Administration');
+}
+
+function ModifyPost($postid)
+{
+	$postManager = new PostManager();
+	$post = $postManager->getPost($postid);
+	require('view/UserViews/BackendView.php');
+}
+
+function UpdatePost($id, $content, $title)
+{
+	try {
+		$postManager = new PostManager();
+		$post = $postManager->UpdateContent($id, $content, $title);
+	}
+
+	//if ($post === false) {
+		
+		//throw new Exception('Impossible de modifier l\'article');
+	catch(Exception $e) {
+		exit('<b>Catched exception at line '. $e->getLine() .' :</b> '. $e->getMessage());		
+	}
+
+	//}
+	//else {
+	header('Location: index.php?action=Modify&id=' . $id);
+	//}
+
+}
+
+function CreateNewPost()
+{
+	require('view/UserViews/BackendView.php');
+}
+
+function CreateContent($title, $content)
+{
+	try {
+		$postManager = new PostManager();
+		$affectedLine = $postManager->PostContent($title, $content);
+	}
+
+	catch(Exception $e) {
+		exit('<b>Catched exception at line '. $e->getLine() .' :</b> '. $e->getMessage());		
+	}
+
+	header('Location: index.php?action=Administration');
+}
+
+/*
+* Fonctions d'accès à la page d'administration
+*/
 
 function PageAdmin()	
 {
@@ -46,9 +167,9 @@ function PageAdmin()
 		$total = $postManager->count();
 		$reports = $commentManager->getReports();
 		
-		require('view/AdminView.php');
+		require('view/UserViews/AdminView.php');
 	}
-	else require('view/ConnexionView.php');
+	else require('view/UserViews/ConnexionView.php');
 }
 
 function Verify($pseudo, $pass)
@@ -69,106 +190,7 @@ function Verify($pseudo, $pass)
 	}
 }
 
-function IsValid($id)
-{
- 	$commentManager = new CommentManager();
-
- 	$isvalid = $commentManager->ValidateComment($id);
-
- 	if ($isvalid === false) {
-		
-		throw new Exception('Impossible de valider le commentaire !');
-	}
-	else {
-		header('Location: index.php?action=Administration');
-	}
-}
-
-function DeleteComment($id)
-{
-	$commentManager = new CommentManager();
-
-	$isvalid = $commentManager->DeleteComment($id);
-
-	if ($isvalid === false) {
-		
-		throw new Exception('Impossible de supprimer le commentaire !');
-	}
-	else {
-		header('Location: index.php?action=Administration');
-	}
-}
-
-function DeletePost($id)
-{
-	$PostManager = new postManager();
-	$isvalid = $PostManager->Delete($id);
-
-	if ($isvalid === false) {
-		
-		throw new Exception('Impossible de supprimer le commentaire !');
-	}
-	else {
-		header('Location: index.php?action=Administration');
-	}
-}
 
 
-function Report($id)
-{
-	$commentManager = new CommentManager();
-
-	$report = $commentManager->Report($id);
-	$postId = $commentManager->GetPostId($id);
-
-	if ($report === false) {
-		
-		throw new Exception('Impossible de signaler le commentaire !');
-	}
-	else {
-		header('Location: index.php?action=post&id=' . $postId);
-	}
-}
-
-function ModifyPost($postid)
-{
-	$postManager = new PostManager();
-	$post = $postManager->getPost($postid);
-	require('view/BackendView.php');
-}
-
-function UpdatePost($id, $content, $title)
-{
-	$postManager = new PostManager();
-	$post = $postManager->UpdateContent($id, $content, $title);
-
-	if ($post === false) {
-		
-		throw new Exception('Impossible de modifier l\'article');
-
-	}
-	else {
-		header('Location: index.php?action=Modify&id=' . $id);
-	}
-
-}
-
-function CreateNewPost()
-{
-	require('view/BackendView.php');
-}
-
-function CreateContent($title, $content)
-{
-	$postManager = new PostManager();
-	$affectedLine = $postManager->PostContent($title, $content);
 
 
-	if ($affectedLine === false) {
-		throw new Exception('Impossible de mettre l\'article en ligne !');
-
-	}
-	else {
-		header('Location: index.php?action=Administration');
-	}
-}

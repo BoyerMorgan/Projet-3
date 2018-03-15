@@ -1,7 +1,7 @@
 <?php
 
-require_once("model/Manager.php");
-require_once("model/CommentModel.php");
+require_once("model/Managers/Manager.php");
+require_once("model/Models/CommentModel.php");
 
 class CommentManager extends Manager
 {
@@ -37,7 +37,8 @@ class CommentManager extends Manager
 	{
 		$db = $this->dbConnect();
 		$comment = $db->prepare('UPDATE comments SET report=report+1 WHERE id =:id ');
-		$affectedLine = $comment->execute(array('id' => $id));
+		$comment->bindValue(':id', $id, PDO::PARAM_INT);
+		$affectedLine = $comment->execute();
 
 		return $affectedLine;
 	}
@@ -64,10 +65,10 @@ class CommentManager extends Manager
 	{
 		$db = $this->dbConnect();
 		$isvalid = $db->prepare('UPDATE comments SET report = :report WHERE id = :id');
-		$affectedLine = $isvalid->execute(array(
-			'id' => $id,	
-			'report' => 0
-		));
+		$isvalid->bindValue(':report', 0, PDO::PARAM_INT);
+		$isvalid->bindValue(':id', $id, PDO::PARAM_INT);
+		
+		$affectedLine = $isvalid->execute();
 
 		return $affectedLine;
 
@@ -77,7 +78,9 @@ class CommentManager extends Manager
 	{
 		$db = $this->dbConnect();
 		$delete = $db->prepare('DELETE FROM comments WHERE id = :id' );
-		$affectedLine = $delete->execute(array('id' => $id));
+		$delete->bindValue(':id', $id, PDO::PARAM_INT);
+
+		$affectedLine = $delete->execute();
 
 		return $affectedLine;
 	}
@@ -86,7 +89,9 @@ class CommentManager extends Manager
 	{
 		$db = $this->dbConnect();
 		$req = $db->prepare('SELECT post_id FROM comments WHERE id = :id');
-		$req->execute(array('id' => $id));
+		$req->bindValue(':id', $id, PDO::PARAM_INT);
+		$req->execute();
+
 		$postId = $req->fetch()['post_id'];
 
 		return $postId;

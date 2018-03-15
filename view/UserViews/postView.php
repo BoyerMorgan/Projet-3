@@ -1,10 +1,10 @@
 <p><a href="index.php">Retour à la liste des billets</a></p>
  
 
-    <div class="news">
+    <div class="singlePost">
         <h3>
-            <?= htmlspecialchars_decode($post['title']) ?>
-                <em>le <?= $post['creation_date_fr'] ?></em>
+            <?= htmlspecialchars_decode($post['title']) ?>,
+                 le <?= $post['creation_date_fr'] ?>
         </h3>
 
         <p>
