@@ -28,7 +28,7 @@
                     <textarea class ="form-control "id="comment" name="comment"></textarea>
                 </div>
                 <div class ="form-group">
-                    <button type="submit" class="btn btn-primary"/><span class="glyphicon glyphicon-ok-sign"></span> Envoyer</button>
+                    <button type="submit" class="btn btn-primary"/><span class="glyphicon glyphicon-ok-sign"></span>Envoyer</button>
                 </div>
             </form>
     </legend>
