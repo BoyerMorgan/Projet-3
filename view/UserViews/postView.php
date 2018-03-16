@@ -1,44 +1,60 @@
-<p><a href="index.php">Retour à la liste des billets</a></p>
- 
-
-    <div class="singlePost">
-        <h3>
-            <?= htmlspecialchars_decode($post['title']) ?>,
-                 le <?= $post['creation_date_fr'] ?>
-        </h3>
-
-        <p>
-            <?= nl2br(htmlspecialchars_decode($post['content'])) ?>
-        </p>
+<div class = "container">
+    <div class="row">
+        <h2 align ="center">
+             <?= htmlspecialchars_decode($post['title']) ?>
+                <br/><small class ="text-muted">le <?= $post['creation_date_fr'] ?></small>
+        </h2>
     </div>
 
-    <h2>Commentaires</h2>
+    <p>
+        <?= nl2br(htmlspecialchars_decode($post['content'])) ?>
+    </p>
+        
+        <div class = "row" align="right">
+            <br /><a href="index.php"><button class="btn btn-primary">Retour à la liste des billets</button></a>
+        </div>
 
-    <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
-        <div>
-            <label for="author">Auteur</label><br />
-            <input type="text" id="author" name="author" />
+    <legend>
+        <div class = "row" id="Commentaires">
+            <h3>Commentaires</h3>
         </div>
-        <div>
-            <label for="comment">Commentaire</label><br />
-            <textarea id="comment" name="comment"></textarea>
-        </div>
-        <div>
-            <input type="submit" />
-        </div>
-    </form>
+            <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
+                <div class ="form-group">
+                    <label id="auteurcommentaire" for="author" class="control-label">Auteur</label><br />
+                    <input type="text" id="author" name="author" />
+                </div>
+                <div class ="form-group">
+                    <label id="commentaire" for="comment" class="control-label">Commentaire</label><br />
+                    <textarea class ="form-control "id="comment" name="comment"></textarea>
+                </div>
+                <div class ="form-group">
+                    <button type="submit" class="btn btn-primary"/><span class="glyphicon glyphicon-ok-sign"></span> Envoyer</button>
+                </div>
+            </form>
+    </legend>
 
+    <fieldset>
     <?php
 if (!empty($comments))
 { 
     foreach ($comments as $key => $comment)
     {
     ?>
-        <p><strong><?= htmlspecialchars($comment->getAuthor()) ?></strong> le <?= $comment->getCommentDate() ?></p>
-        <p><?= nl2br(htmlspecialchars($comment->getComment()));?></p><a href="index.php?action=Report&amp;id=<?= $comment->getId() ?>">Signaler commentaire </a>[<?=$comment->getReport();?>]
+        <p>
+        <strong><?= htmlspecialchars($comment->getAuthor()) ?></strong> le <?= $comment->getCommentDate() ?>
+        </p>
+        <p>
+            <blockquote><?= nl2br(htmlspecialchars($comment->getComment()));?></blockquote>
+        </p>
+        <a href="index.php?action=Report&amp;id=<?= $comment->getId() ?>">
+            <button class="btn btn-secondary">Signaler commentaire</button>
+        </a> 
+            <strong>[<?=$comment->getReport();?>]</strong><br /><br />
 
     <?php      
     }
 }
     ?>
+    </fieldset>
+</div>
 

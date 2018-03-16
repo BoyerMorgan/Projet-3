@@ -1,26 +1,31 @@
+<div class ="container">
+
 <h2>Bienvenue <?= $_SESSION['pseudo']?> sur votre espace d'administration</h2>
 
-<a href = "index.php?action=CreateNew">Créer un nouvel article</a>
+<a href = "index.php?action=CreateNew"><button class="btn btn-primary">Créer un nouvel article</button></a>
 
-<h3>Voici les <?=$total?> articles que vous avez mis en ligne</h3>	
+<h3>Voici les <?=$total?> articles que vous avez mis en ligne :</h3>	
 
-	<div class = "listNews">
+	<section class = "col-sm_8 table-responsive">
+		<table class ="table table-bordered table-striped table-condensed">
 <?php
 foreach($posts as $key => $post)
 {
 ?>
-		<table border ="1" cellpadding="15">
+		
 			<tr>
-				<th><?= htmlspecialchars_decode(substr($post->getTitle(), 0, 10)); ?></th><td><?= substr(nl2br(htmlspecialchars_decode($post->getContent())), 0, 50); ?>...</td>
-					<td><a href="index.php?action=Modify&amp;id=<?= $post->getId(); ?>">Modifier</a></td>
-					<td><a href="index.php?action=DeletePost&amp;id=<?= $post->getId(); ?>">Supprimer</a></td>
+				<th scope="col-md-5" align="center"><?= htmlspecialchars_decode(substr($post->getTitle(), 0, 10)); ?></th>
+				<td><?= substr(nl2br(htmlspecialchars_decode($post->getContent())), 0, 50); ?>...</td>
+					<td align="center"><a href="index.php?action=Modify&amp;id=<?= $post->getId(); ?>"><button class="btn btn-primary">Modifier</button></a></td>
+					<td align="center"><a href="index.php?action=DeletePost&amp;id=<?= $post->getId(); ?>"><button class="btn btn-primary">Supprimer</button></a></td>
 			</tr>
-		</table>
+		
 
 <?php
 }
 ?>
-	</div>
+		</table>
+	</section>
 
 <?php
 if (!empty($reports))
@@ -35,8 +40,8 @@ if (!empty($reports))
 	<p>	
 		<strong><?= htmlspecialchars_decode($report->getAuthor()) ?></strong> le <?= $report->getCommentDate() ?> :<br />
 		<?= nl2br(htmlspecialchars_decode($report->getComment())) ?>
-		<a href="index.php?action=ValidateComment&amp;id=<?= $report->getId() ?>">Valider commentaire</a>
-		<a href="index.php?action=DeleteComment&amp;id=<?= $report->getId() ?>"">Supprimer commentaire</a>
+		<a href="index.php?action=ValidateComment&amp;id=<?= $report->getId() ?>"><button class ="btn btn-secondary">Valider commentaire</button></a>
+		<a href="index.php?action=DeleteComment&amp;id=<?= $report->getId() ?>""><button class ="btn btn-secondary">Supprimer commentaire</button></a>
 	</p>
 
 <?php
@@ -48,8 +53,5 @@ else {
 <?php
 }
 ?>	
-
-	
-
 <p><a href="index.php">Retour à la liste des billets</a></p>
-
+</div>

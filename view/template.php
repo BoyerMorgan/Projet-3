@@ -1,55 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <link href="public/css/bootstrap.min.css" rel="stylesheet" />
+        <title>Billet simple pour l'Alaska</title>
+        <style type="text/css">
+            img {
+                width: 100%;
+            }
+
+            #ListPost {
+             background-color:#ececec;     
+            }
+
+            blockquote {
+                font-size: 1.1em;
+            }
+
+            #auteurcommentaire, #commentaire {
+                font-size: 16px;
+            }
+
+        </style>
+    </head>
+      
+    <body>
+        <div class ="container-fluid">
+            <header class ="page-header">
+                    <img class="img-responsive img-rounded"src="public/images/Alaska.jpg" alt="Responsive image">
+                <h1 align="center">Billet simple pour l'Alaska<br/><small class ="text-muted">un livre de Jean Forteroche</small></h1>
+            </header>
+         </div>
+        <?= $content ?>
+    </body>
+
+<fieldset style= "margin-bottom: 15px">
+    <br/>
+<div class = "container" align="right">
 <?php        
     if (isset($_SESSION['is_logged']) && $_SESSION['is_logged'] == true) { 
         if ((isset($_GET['action']) && $_GET['action'] != 'Administration') || !isset($_GET['action'])) {
-?> 
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Billet simple pour l'Alaska</title>
-        <link href="style.css" rel="stylesheet" /> 
-    </head>
-    <h1>Billet simple pour l'Alaska !</h1>
-        
-    <body>
-        <?= $content ?>
-    </body>
-    <p>       
-        <a href="index.php?action=deconnexion"><button>Déconnexion</button></a><br />
-        <a href="index.php?action=Administration"><button>Page d'administration</button></a>
+?>          <section class ="row-sm-4">  
+                <a href="index.php?action=deconnexion"><button class="btn btn-secondary">Déconnexion</button></a>
+                <a href="index.php?action=Administration"><button class="btn btn-secondary">Page d'administration</button></a>
+            </section>
 <?php
         }
         else if  (isset($_GET['action']) && $_GET['action'] == 'Administration') {
 ?> 
- <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Administration du blog</title>
-        <link href="style.css" rel="stylesheet" /> 
-    </head>
-       
-    <body>
-        <?= $content ?>
-    </body>
-    <p>
-     <a href="index.php?action=deconnexion"><button>Déconnexion</button></a><br />      
+
+     <a href="index.php?action=deconnexion"><button class="btn btn-secondary">Déconnexion</button></a><br />      
 <?php   
         }     
     }
-    else
-    {
+    else { 
 ?>
-    	<h3>Espace d'administration</h3>
+    	<legend>Espace d'administration</legend>
     	<form action="index.php?action=connexion" method="post">
-            <p>
-              <input type="text" id="pseudo" name="pseudo" /> 
-              <input type="password" id="pass" name="pass" />
-              <input type="submit" value="Se connecter" />
-            </p>
+           
+                <div class ="form-inline">
+                  <label for="text" class="control-label">
+                        <small class="text-muted">Identifiant :</small>
+                  </label>
+                        <input class="form-control input-sm" type="text" id="pseudo" name="pseudo"/> 
+                   <label for="password" class="control-label">
+                        <small class="text-muted">Mot de passe :</small>
+                   </label>
+                        <input class="form-control input-sm" type="password" id="pass" name="pass" />
+                  <input class="btn btn-primary btn-sm" type="submit" value="Se connecter" />
+                </div>
+           
         </form>
 <?php
     }
-?>     
-    </p>
+?>      
+        </fieldset> 
+    </div>
 </html>
