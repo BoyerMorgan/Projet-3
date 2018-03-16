@@ -1,5 +1,5 @@
 <div class ="container" id="ListPost">
-	<h2>Liste des derniers chapitres</h2>
+	<h2 align="center">Liste des derniers chapitres</h2>
 <?php
 foreach($posts as $key => $post)
 {
@@ -12,8 +12,10 @@ foreach($posts as $key => $post)
 				
 			
 			<article class ="col-lg-12">
+				<blockquote>
 				<?= substr(nl2br(htmlspecialchars_decode($post->getContent())), 0, 500); ?>...
 				<em><a href="index.php?action=post&amp;id=<?= $post->getId(); ?>">  Voir plus</a></em>
+				</blockquote>
 			</article>
 		</div>
 <?php
@@ -23,12 +25,14 @@ foreach($posts as $key => $post)
 
 
 <div class = container align="right">
+	<ul class="pagination">
 <?php	
 $nbPages = ceil($total / 5);
 for ($i=1; $i<=$nbPages; $i++ )
 {
-?>
-		<a href='index.php?action=listPosts&amp;id=<?= $i ?>'><button class="btn btn-secondary"><?=$i?></button></a>
+?>	
+		<li><a href='index.php?action=listPosts&amp;id=<?= $i ?>'><?=$i?></a></li>
+	
 	
 <?php
 	if ($i > 3) {
@@ -39,6 +43,7 @@ for ($i=1; $i<=$nbPages; $i++ )
 	}
 }
 ?>
+	</ul>
 </div>
 
 	

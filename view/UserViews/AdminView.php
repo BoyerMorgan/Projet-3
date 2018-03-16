@@ -2,7 +2,7 @@
 
 	<h2 align="center">Bienvenue Jean sur votre espace d'administration</h2>
 		<div align ="center">
-			<a href = "index.php?action=CreateNew"><button class="btn btn-primary">Créer un nouvel article</button></a>
+			<a href = "index.php?action=CreateNew"><button class="btn btn-primary btn-lg">Créer un nouvel article</button></a>
 		</div>
 
 	<h3>Voici les <?=$total?> articles que vous avez mis en ligne :</h3>	

@@ -10,7 +10,9 @@
             }
 
             #ListPost {
-             background-color:#ececec;     
+             background-color:white; 
+             padding-left: 50px;  
+             padding-bottom: 20px; 
             }
 
             blockquote {
@@ -21,15 +23,23 @@
                 font-size: 16px;
             }
 
+            .jumbotron {
+                padding-top: 2px;
+                padding-bottom: 0px;
+                margin-top: 15px;
+            }
+
         </style>
     </head>
       
     <body>
         <div class ="container-fluid">
+            <div class="jumbotron">
             <header class ="page-header">
                     <img class="img-responsive img-rounded"src="public/images/Alaska.jpg" alt="Responsive image">
-                <h1 align="center">Billet simple pour l'Alaska<br/><small class ="text-muted">un livre de Jean Forteroche</small></h1>
+                <h1 align="center">Billet simple pour l'Alaska<br/><small class ="text-info">un livre de Jean Forteroche</small></h1>
             </header>
+            </div>
          </div>
         <?= $content ?>
     </body>
