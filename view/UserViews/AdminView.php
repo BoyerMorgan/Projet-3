@@ -2,11 +2,11 @@
 
 	<h2 align="center">Bienvenue Jean sur votre espace d'administration</h2>
 		<div class ="row">
-			<div class ="col-sm-offset-2 col-sm-3">
-				<a href = "index.php?action=CreateNew"><button class="btn btn-primary btn-lg">Créer un nouvel article</button></a>
+			<div class ="col-sm-offset-1 col-sm-5 col-xs-12 new_content">
+				<a href = "index.php?action=CreateNew"><button class="btn btn-primary btn-lg new_button">Créer un nouvel article</button></a>
 			</div>
-			<div class ="col-sm-offset-1 col-sm-3">
-				<a href="index.php"><button class="btn btn-primary btn-lg">Retour à la liste des billets</button></a>
+			<div class ="col-sm-offset-1 col-sm-5 col-xs-12">
+				<a href="index.php"><button class="btn btn-primary btn-lg new_button">Retour à la liste des billets</button></a>
 			</div>
 		</div>
 

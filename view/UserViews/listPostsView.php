@@ -13,7 +13,7 @@ foreach($posts as $key => $post)
 			
 			<article class ="col-lg-12">
 				<blockquote>
-				<?= substr(nl2br(htmlspecialchars_decode($post->getContent())), 0, 500); ?>...
+				<?= substr(nl2br(htmlspecialchars_decode($post->getContent())), 0, 1000); ?>...
 				<em><a href="index.php?action=post&amp;id=<?= $post->getId(); ?>">  Voir plus</a></em>
 				</blockquote>
 			</article>

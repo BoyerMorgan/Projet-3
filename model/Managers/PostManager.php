@@ -41,14 +41,19 @@ class PostManager extends Manager {
 
 	public function getPost($postId)
 	{
-		$db = $this->dbConnect();
-		$req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = :id');
-		$req->bindValue(':id', $postId, PDO::PARAM_INT);
-		
-		$req->execute();
-		$post = $req->fetch();
 
-		return $post;
+		$db = $this->dbConnect();
+		$post = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate FROM posts WHERE id = :id');
+		$post->bindValue(':id', $postId, PDO::PARAM_INT);
+		$post->execute();
+
+		$postModel = array();
+
+		$postModel = new PostModel();
+		$postModel->hydrate($post->fetch());
+		$postModels[] = $postModel;
+
+		return $postModels;
 	}
 
 	public function count()

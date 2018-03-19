@@ -1,21 +1,23 @@
 <?php
-$nextchapter = $post['id']+1;
-$previouschapter = $post['id']-1;
+foreach($post as $key => $req) {
 ?>
 
 <div class = "container">
     <div class="row">
         <h2 align ="center">
-             <?= htmlspecialchars_decode($post['title']) ?>
-                <br/><small class ="text-muted">le <?= $post['creation_date_fr'] ?></small>
+             <?= htmlspecialchars_decode($req->getTitle()) ?>
+                <br/><small class ="text-muted">le <?= $req->getCreationDate(); ?></small>
         </h2>
     </div>
     <div class = "row">
             <p>
-        <?= nl2br(htmlspecialchars_decode($post['content'])) ?>
+        <?= nl2br(htmlspecialchars_decode($req->getContent())); ?>
             </p>     
     </div>  
 </div>
+<?php
+}
+?>
 
 <div class = "container">
     <div class = "row" align="right">

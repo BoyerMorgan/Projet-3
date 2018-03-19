@@ -20,6 +20,7 @@ class CommentManager extends Manager
 			$commentModel->hydrate($comment);
 			$commentModels[] = $commentModel;
 		}
+		//Si commentModels est vide, aucun retour
 		if (!empty($commentModels))
 		{	return $commentModels; }
 	}
@@ -56,6 +57,7 @@ class CommentManager extends Manager
 			$reportModel->hydrate($report);
 			$reportsModel[] = $reportModel;
 		}
+		//Si reportsModel est vide - aucun retour
 		if (!empty($reportsModel))
 		{	return $reportsModel; }
 

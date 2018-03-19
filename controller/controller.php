@@ -17,11 +17,18 @@ function listPosts($idpage)
 
 function post()
 {
+	try {
 	$postManager = new PostManager();
 	$commentManager = new CommentManager();
 
 	$post = $postManager->getPost($_GET['id']);
 	$comments = $commentManager->getComments($_GET['id']);
+	}
+
+	catch(Exception $e) {
+		exit('<b>Catched exception at line '. $e->getLine() .' :</b> '. $e->getMessage());		
+	}
+
 	require('view/UserViews/postView.php');
 }
 

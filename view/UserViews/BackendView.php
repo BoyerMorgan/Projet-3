@@ -19,24 +19,26 @@
 
 <div class ="container">
 <?php if (!empty($post)) { 
+  foreach($post as $key => $req) {
 ?>    
-    <h2>Modifications du <?= htmlspecialchars($post['title']) ?></h2>
+    <h2>Modifications du <?= htmlspecialchars($req->getTitle()) ?></h2>
   <form action="index.php?action=UpdateContent&amp;id=<?= $post['id'] ?>" method="POST">
      <div class ="form-group">
       <label for="title" class ="control-label">Titre de l'article</label><br />
-      <input type="text" class="form-control" id="title" name="new_title" value="<?= htmlspecialchars($post['title']) ?>">
+      <input type="text" class="form-control" id="title" name="new_title" value="<?= htmlspecialchars($req->getTitle()) ?>">
       </input>
     </div>
      <div class ="form-group">
       <br /><label for="content" class ="control-label">Contenu de l'article</label><br />
       <textarea id ="mytextarea", name="new_content"> 
-        <?= nl2br(htmlspecialchars($post['content'])) ?> 
+        <?= nl2br(htmlspecialchars($req->getContent())) ?> 
       </textarea>
       <br /><button type="submit" class="btn btn-primary">Modifier</button>
     </div>
   </form>
 
 <?php 
+  }
 }
 else {
 ?>  

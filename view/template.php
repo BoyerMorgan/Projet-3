@@ -29,6 +29,16 @@
                 margin-top: 15px;
             }
 
+            .new_content {
+                margin-bottom: 10px;
+            }
+
+            .new_button {
+                width: 100%;
+            }
+
+
+
         </style>
 <!--
    Header
@@ -38,8 +48,7 @@ include_once('view/header.php')
 ?>
     </head>
       
-    <body>
-        
+    <body>        
         <?= $content ?>
     </body>
 

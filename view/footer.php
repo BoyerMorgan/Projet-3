@@ -1,5 +1,5 @@
-  <footer>
-        <fieldset style= "margin-bottom: 15px">
+<footer>
+    <fieldset style= "margin-bottom: 15px">
             <br/>
         <div class = "container" align="right">
         <?php        
@@ -38,7 +38,7 @@
                 </form>
         <?php
             }
-        ?>      
-            </fieldset> 
-        </div>
-    </footer>
+        ?>
+        </div>      
+    </fieldset> 
+</footer>
