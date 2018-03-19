@@ -44,26 +44,29 @@
         <?= $content ?>
     </body>
 
+<!--
+   Pied de page 
+-->
 <fieldset style= "margin-bottom: 15px">
     <br/>
 <div class = "container" align="right">
 <?php        
     if (isset($_SESSION['is_logged']) && $_SESSION['is_logged'] == true) { 
-        if ((isset($_GET['action']) && $_GET['action'] != 'Administration') || !isset($_GET['action'])) {
-?>          <section class ="row-sm-4">  
-                <a href="index.php?action=deconnexion"><button class="btn btn-secondary">Déconnexion</button></a>
-                <a href="index.php?action=Administration"><button class="btn btn-secondary">Page d'administration</button></a>
-            </section>
+        if  (isset($_GET['action']) && ($_GET['action'] == 'Administration' || $_GET['action'] == 'CreateNew' || $_GET['action'] == 'Modify')) {
+?>          
+        <a href="index.php?action=deconnexion"><button class="btn btn-secondary">Déconnexion</button></a><br />
 <?php
         }
-        else if  (isset($_GET['action']) && $_GET['action'] == 'Administration') {
+     else  { 
 ?> 
-
-     <a href="index.php?action=deconnexion"><button class="btn btn-secondary">Déconnexion</button></a><br />      
+        <section class ="row-sm-4">  
+                <a href="index.php?action=deconnexion"><button class="btn btn-secondary">Déconnexion</button></a>
+                <a href="index.php?action=Administration"><button class="btn btn-secondary">Page d'administration</button></a>
+            </section>   
 <?php   
         }     
     }
-    else { 
+    else if (!isset($_SESSION['is_logged'])) { 
 ?>
     	<legend>Espace d'administration</legend>
     	<form action="index.php?action=connexion" method="post">

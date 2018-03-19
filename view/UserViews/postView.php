@@ -1,3 +1,8 @@
+<?php
+$nextchapter = $post['id']+1;
+$previouschapter = $post['id']-1;
+?>
+
 <div class = "container">
     <div class="row">
         <h2 align ="center">
@@ -5,15 +10,18 @@
                 <br/><small class ="text-muted">le <?= $post['creation_date_fr'] ?></small>
         </h2>
     </div>
-
-    <p>
+    <div class = "row">
+            <p>
         <?= nl2br(htmlspecialchars_decode($post['content'])) ?>
-    </p>
-        
-        <div class = "row" align="right">
-            <br /><a href="index.php"><button class="btn btn-primary">Retour à la liste des billets</button></a>
-        </div>
+            </p>     
+    </div>  
+</div>
 
+<div class = "container">
+    <div class = "row" align="right">
+            <br />
+            <a href="index.php"><button class="btn btn-primary">Retour à la liste des billets</button></a>
+    </div>
     <legend>
         <div class = "row" id="Commentaires">
             <h3>Commentaires</h3>
