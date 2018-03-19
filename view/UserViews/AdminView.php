@@ -1,8 +1,13 @@
 <div class ="container">
 
 	<h2 align="center">Bienvenue Jean sur votre espace d'administration</h2>
-		<div align ="center">
-			<a href = "index.php?action=CreateNew"><button class="btn btn-primary btn-lg">Créer un nouvel article</button></a>
+		<div class ="row">
+			<div class ="col-sm-offset-2 col-sm-3">
+				<a href = "index.php?action=CreateNew"><button class="btn btn-primary btn-lg">Créer un nouvel article</button></a>
+			</div>
+			<div class ="col-sm-offset-1 col-sm-3">
+				<a href="index.php"><button class="btn btn-primary btn-lg">Retour à la liste des billets</button></a>
+			</div>
 		</div>
 
 	<h3>Voici les <?=$total?> articles que vous avez mis en ligne :</h3>	
@@ -55,7 +60,7 @@ else {
 <?php
 }
 ?>	
-	<div class="row">
-		<a href="index.php"><button class="btn btn-primary">Retour à la liste des billets</button></a>
+	<div class="row" align="center">
+		
 	</div>
 </div>
