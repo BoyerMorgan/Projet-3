@@ -37,9 +37,22 @@
                 width: 100%;
             }
 
+            .glyphicon.glyphicon-arrow-down 
+            {
+                font-size: 60px;
+            }
 
+            @media (max-width: 992px) {
+            .glyphicon.glyphicon-arrow-down {
+                    display: none;
+                }
+            }
 
         </style>
+
+        <script type="text/javascript">
+            document.getElementById("myLink").href = document.URL;
+        </script>
 <!--
    Header
 -->
@@ -47,7 +60,7 @@
 include_once('view/header.php')
 ?>
     </head>
-      
+    <a name="Scroll"></a> 
     <body>        
         <?= $content ?>
     </body>

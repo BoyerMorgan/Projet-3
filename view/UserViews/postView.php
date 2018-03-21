@@ -25,10 +25,10 @@ foreach($post as $key => $req) {
             <a href="index.php"><button class="btn btn-primary">Retour à la liste des billets</button></a>
     </div>
     <legend>
-        <div class = "row" id="Commentaires">
+        <div class ="row" id="Commentaires">
             <h3>Commentaires</h3>
         </div>
-            <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
+            <form action="index.php?action=addComment&amp;id=<?= $req->getId() ?>" method="post">
                 <div class ="form-group">
                     <label id="auteurcommentaire" for="author" class="control-label">Auteur</label><br />
                     <input type="text" id="author" name="author" />
@@ -38,7 +38,7 @@ foreach($post as $key => $req) {
                     <textarea class ="form-control "id="comment" name="comment"></textarea>
                 </div>
                 <div class ="form-group">
-                    <button type="submit" class="btn btn-primary"/><span class="glyphicon glyphicon-ok-sign"></span>Envoyer</button>
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok-sign"></span>Envoyer</button>
                 </div>
             </form>
     </legend>

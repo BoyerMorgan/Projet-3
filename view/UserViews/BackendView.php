@@ -20,9 +20,11 @@
 <div class ="container">
 <?php if (!empty($post)) { 
   foreach($post as $key => $req) {
-?>    
+    $id = ($req->getId());
+?> 
+
     <h2>Modifications du <?= htmlspecialchars($req->getTitle()) ?></h2>
-  <form action="index.php?action=UpdateContent&amp;id=<?= $post['id'] ?>" method="POST">
+  <form action="index.php?action=UpdateContent&amp;id=<?= $id ?>" method="POST">
      <div class ="form-group">
       <label for="title" class ="control-label">Titre de l'article</label><br />
       <input type="text" class="form-control" id="title" name="new_title" value="<?= htmlspecialchars($req->getTitle()) ?>">

@@ -4,15 +4,13 @@
         	<div class ="row">
         		<div class = "col-lg-12">
         			<div class = "row">
-		        		<div class = "col-lg-10 col-lg-offset-1">
+		        		<div class = "col-lg-10 col-lg-offset-1 col-md-10">
 		                	<img class="img-responsive img-rounded"src="public/images/Alaska.jpg" alt="Responsive image">
 			            </div>
-			        </div>
-			        <div class = "row">
 			            <div class = "col-lg-1">
-			                	<span class="glyphicon glyphicon-arrow-down"></span>
+			                	<br /><a id="myLink" href="#Scroll"><span class="glyphicon glyphicon-arrow-down"></span></a>
 		            	</div>
-		            </div>
+		           	</div>
 		        </div>
 	       	</div>
 

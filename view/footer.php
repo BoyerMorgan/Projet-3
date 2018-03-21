@@ -31,8 +31,9 @@
                            <label for="password" class="control-label">
                                 <small class="text-muted">Mot de passe :</small>
                            </label>
-                                <input class="form-control input-sm" type="password" id="pass" name="pass" />
-                          <input class="btn btn-primary btn-sm" type="submit" value="Se connecter" />
+                                <input class="form-control input-sm" type="password" id="pass" name="pass" />                               
+                             <input class="btn btn-primary btn-sm connexion_button" type="submit" value="Se connecter" />
+
                         </div>
                    
                 </form>
