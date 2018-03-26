@@ -4,25 +4,25 @@ require_once('model/Managers/CommentManager.php');
 require_once('model/Managers/ConnexionManager.php');
 
 /*
-* Fonctions d'affichage
+* Fonctions d'affichage 
 */
 function listPosts($idpage)
 {
-	$postManager =new PostManager();
+	$postManager = new PostManager();
 	$posts = $postManager->getFivePosts($idpage);
 	$total = $postManager->count();
 
 	require('view/UserViews/listPostsView.php');
 }
 
-function post()
+function post($id)
 {
 	try {
 	$postManager = new PostManager();
 	$commentManager = new CommentManager();
 
-	$post = $postManager->getPost($_GET['id']);
-	$comments = $commentManager->getComments($_GET['id']);
+	$post = $postManager->getPost($id);
+	$comments = $commentManager->getComments($id);
 	}
 
 	catch(Exception $e) {
@@ -126,17 +126,13 @@ function UpdatePost($id, $content, $title)
 		$post = $postManager->UpdateContent($id, $content, $title);
 	}
 
-	//if ($post === false) {
-		
-		//throw new Exception('Impossible de modifier l\'article');
 	catch(Exception $e) {
 		exit('<b>Catched exception at line '. $e->getLine() .' :</b> '. $e->getMessage());		
 	}
 
-	//}
-	//else {
+	
 	header('Location: index.php?action=Modify&id=' . $id);
-	//}
+	
 
 }
 
@@ -186,7 +182,8 @@ function Verify($pseudo, $pass)
 	if ($result == false)
 	{
 		$_SESSION['is_logged'] = false;
-		echo 'Mauvais identifiant ou mot de passe ';
+		$message= 'Mauvais identifiant ou mot de passe !';
+		error($message);
 
 	}
 	else
@@ -195,6 +192,11 @@ function Verify($pseudo, $pass)
 		$_SESSION['is_logged'] = true;
 		header('Location: index.php?action=Administration');
 	}
+}
+
+function error($message)
+{ 
+	require('View/userViews/errorView.php');
 }
 
 

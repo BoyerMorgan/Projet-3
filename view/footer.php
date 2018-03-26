@@ -18,7 +18,7 @@
         <?php   
                 }     
             }
-            else if (!isset($_SESSION['is_logged'])) { 
+            else { 
         ?>
             	<legend>Espace d'administration</legend>
             	<form action="index.php?action=connexion" method="post">

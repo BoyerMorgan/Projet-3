@@ -26,7 +26,6 @@ class PostModel extends Model
 		return $this->content;
 	}
 
-
 		public function GetCreationDate()
 	{
 		return $this->creation_date;

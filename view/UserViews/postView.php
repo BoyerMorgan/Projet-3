@@ -64,6 +64,12 @@ if (!empty($comments))
     <?php      
     }
 }
+else {
+?>
+<p>Aucun commentaire pour cet article</p>
+
+<?php
+}
     ?>
     </fieldset>
 </div>

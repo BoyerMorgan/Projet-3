@@ -60,6 +60,9 @@
 include_once('view/header.php')
 ?>
     </head>
+<!--
+   Appel de la vue requise par le controller
+-->
     <a name="Scroll"></a> 
     <body>        
         <?= $content ?>
