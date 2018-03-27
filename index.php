@@ -66,9 +66,9 @@ try {
 				if (!empty($_POST['author']) && (!empty($_POST['comment']))) {
 					addComment($_GET['id'], $_POST['author'], $_POST['comment']);
 				}
-				else { $message='Erreur : Tous les champs doivent être remplis !'; error($message); }
+				else { $message='Erreur : Tous les champs doivent être remplis !'; error($message, $_GET['id']); }
 			}
-			else { $message= 'Erreur : aucun identifiant de billet envoyé'; error($message); }
+			else { $message= 'Erreur : aucun identifiant de billet envoyé'; error($message, 0); }
 		}
 		elseif ($_GET['action'] == 'Report') {
 			if (isset($_GET['id']) && $_GET['id'] > 0) {

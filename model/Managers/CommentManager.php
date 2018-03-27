@@ -21,8 +21,7 @@ class CommentManager extends Manager
 			$commentModels[] = $commentModel;
 		}
 		//Si commentModels est vide, aucun retour
-		if (!empty($commentModels))
-		{	return $commentModels; }
+			return $commentModels; 
 	}
 
 	public function postComment($postId, $author, $comment)

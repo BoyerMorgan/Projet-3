@@ -183,7 +183,7 @@ function Verify($pseudo, $pass)
 	{
 		$_SESSION['is_logged'] = false;
 		$message= 'Mauvais identifiant ou mot de passe !';
-		error($message);
+		error($message, 0);
 
 	}
 	else
@@ -194,7 +194,9 @@ function Verify($pseudo, $pass)
 	}
 }
 
-function error($message)
+//Affichage des erreurs
+
+function error($message, $id)
 { 
 	require('View/userViews/errorView.php');
 }

@@ -45,7 +45,7 @@ foreach($post as $key => $req) {
 
     <fieldset>
     <?php
-if (!empty($comments))
+if (isset($comments))
 { 
     foreach ($comments as $key => $comment)
     {
